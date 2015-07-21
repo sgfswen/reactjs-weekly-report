@@ -135,7 +135,7 @@ class Bodys extends Component {
 
 
     tableCreate(el, data) {
-        console.log(data);
+        document.getElementById('table_created') && document.getElementById('table_created').remove();
         var tbl  = document.createElement("table");
         tbl.style.width  = "70%";
         tbl.id = "table_created";
@@ -143,6 +143,8 @@ class Bodys extends Component {
         var tr_thead = tbl.insertRow();
         for (var i = 0; i < 5; ++i) {
             var th = tr_thead.insertCell();
+            th.style.padding = '10px';
+            if ( i != 4 ) th.style.borderRight = '1px solid #ccc';
             var name = i === 0 ? '项目名称'
                        : ( i === 1 ? '当前进度'
                           : ( i === 2 ? '计划完成时间'
@@ -154,8 +156,11 @@ class Bodys extends Component {
         for (var i = 0; i < data.length; ++i)
         {
             var tr = tbl.insertRow();
+            if ( i % 2 === 0 ) tr.style.background = '#eee';
             for (var j = 0; j < 5; ++j) {
                 var td = tr.insertCell();
+                td.style.padding = '10px';
+                if ( j !== 4 ) td.style.borderRight = '1px solid #ccc';
                 var name = j === 0 ? 'name'
                            : ( j === 1 ? 'status'
                               : ( j === 2 ? 'done'
@@ -164,9 +169,8 @@ class Bodys extends Component {
                 td.appendChild(document.createTextNode(data[i][name].toString()));
             }
         }
-        document.body.appendChild(tbl);
+        document.getElementById('preview').appendChild(tbl);
         el.textContent = '<table>'+document.getElementById('table_created').innerHTML+'</table>';
-        document.getElementById('table_created').remove();
     }
     save( e ) {
         this.tableCreate( document.getElementById('results') , this.state.rowData);
