@@ -15,19 +15,34 @@ class App extends Component {
                 rowData : window.localStorage.rowData ? JSON.parse(window.localStorage.rowData) : [],
                 inputData : [
                     {
-                        values: '【本周】【短期理财】详情页',
-                        text: '项目名称'
+                        values: '例：后台项目',
+                        text: '项目'
                     },{
-                        values: '已提测',
-                        text: '当前进度'
+                        values: 'A',
+                        text: '子任务'
                     },{
-                        values: '7/10',
-                        text: '计划完成时间'
+                        values: 'A',
+                        text: '优先'
                     },{
                         values: '7/20',
-                        text: '计划上线时间'
+                        text: '开发'
                     },{
-                        values: '提测至乐群',
+                        values: '12/12',
+                        text: '测试'
+                    },{
+                        values: '12/12',
+                        text: '上线'
+                    },{
+                        values: '小a',
+                        text: '技术人'
+                    },{
+                        values: '小b',
+                        text: 'QA'
+                    },{
+                        values: '小s',
+                        text: '产品'
+                    },{
+                        values: 'delay了',
                         text: '备注'
                     }
                 ]

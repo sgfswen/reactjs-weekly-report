@@ -61,11 +61,16 @@ class Bodys extends Component {
 // <div><RaisedButton label='保存到 localstorage' primary={true} onClick={this.save.bind(this)} /></div>
     selectItem( item, event ) {
         var _inputs = this.state.inputData.slice(0);
-        _inputs[0].values = item.props.item.name;
-        _inputs[1].values = item.props.item.status;
-        _inputs[2].values = item.props.item.done;
-        _inputs[3].values = item.props.item.online;
-        _inputs[4].values = item.props.item.note;
+        _inputs[0].values = item.props.item.proj;
+        _inputs[1].values = item.props.item.subproj;
+        _inputs[2].values = item.props.item.priority;
+        _inputs[3].values = item.props.item.tech_t;
+        _inputs[4].values = item.props.item.qa_t;
+        _inputs[5].values = item.props.item.pub;
+        _inputs[6].values = item.props.item.leader;
+        _inputs[7].values = item.props.item.qa;
+        _inputs[8].values = item.props.item.prod;
+        _inputs[9].values = item.props.item.note;
         var _isSelected = item.props.item.id === item.props.isSelected ? false : item.props.item.id;
         if ( typeof _isSelected === 'number' ) {
             this.setState({
@@ -100,37 +105,47 @@ class Bodys extends Component {
 
         let list = document.querySelector('.contents').querySelectorAll('input');
 
-        var error = false;
+        // var error = false;
         
-        Array.prototype.forEach.call(list, function( item ){
-            if ( item ) {
-                if ( !item.value ) {
-                    alert('Value should\'n be empty');
-                    error = true;
-                }
-            }
-        });
+        // Array.prototype.forEach.call(list, function( item ){
+        //     if ( item ) {
+        //         if ( !item.value ) {
+        //             alert('Value should\'n be empty');
+        //             error = true;
+        //         }
+        //     }
+        // });
 
-        if ( !error ) {
+        // if ( !error ) {
             var items = this.state.rowData;
             if ( items[forms.props.isSelected] ) {
-                items[forms.props.isSelected].name = list[0].value;
-                items[forms.props.isSelected].status = list[1].value;
-                items[forms.props.isSelected].done = list[2].value;
-                items[forms.props.isSelected].online = list[3].value;
-                items[forms.props.isSelected].note = list[4].value;
+                items[forms.props.isSelected].proj      = list[0].value;
+                items[forms.props.isSelected].subproj   = list[1].value;
+                items[forms.props.isSelected].priority  = list[2].value;
+                items[forms.props.isSelected].tech_t    = list[3].value;
+                items[forms.props.isSelected].qa_t      = list[4].value;
+                items[forms.props.isSelected].pub       = list[5].value;
+                items[forms.props.isSelected].leader    = list[6].value;
+                items[forms.props.isSelected].qa        = list[7].value;
+                items[forms.props.isSelected].prod      = list[8].value;
+                items[forms.props.isSelected].note      = list[9].value;
             } else {
                 items.push( {
-                    name: list[0].value,
-                    status: list[1].value,
-                    done: list[2].value,
-                    online: list[3].value,
-                    note: list[4].value
+                    proj     : list[0].value,
+                    subproj  : list[1].value,
+                    priority : list[2].value,
+                    tech_t   : list[3].value,
+                    qa_t     : list[4].value,
+                    pub      : list[5].value,
+                    leader   : list[6].value,
+                    qa       : list[7].value,
+                    prod     : list[8].value,
+                    note     : list[9].value
                 } );
             }
             this.setState({ rowData: items });
             window.localStorage.rowData = JSON.stringify(this.state.rowData);
-        }
+        // }
     }
 
 
@@ -138,34 +153,51 @@ class Bodys extends Component {
         document.getElementById('table_created') && document.getElementById('table_created').remove();
         var tbl  = document.createElement("table");
         tbl.style.width  = "70%";
+        tbl.style.border = '1px solid #ccc';
         tbl.id = "table_created";
 
         var tr_thead = tbl.insertRow();
-        for (var i = 0; i < 5; ++i) {
+        for (var i = 0; i < 10; ++i) {
             var th = tr_thead.insertCell();
             th.style.padding = '10px';
-            if ( i != 4 ) th.style.borderRight = '1px solid #ccc';
-            var name = i === 0 ? '项目名称'
-                       : ( i === 1 ? '当前进度'
-                          : ( i === 2 ? '计划完成时间'
-                            : ( i === 3 ? '计划上线时间' 
-                                : ( i === 4 ? '备注' : ''))));
+            th.style.background = '#f0f0f0';
+            th.style.fontWeight = 'bold';
+            if ( i != 9 ) th.style.borderRight = '1px solid #ccc';
+            var name = i === 0 ? '项目'
+                        : i === 1 ? '子任务'
+                        : i === 2 ? '优先'
+                        : i === 3 ? '开发' 
+                        : i === 4 ? '测试'
+                        : i === 5 ? '上线'
+                        : i === 6 ? '技术人'
+                        : i === 7 ? 'QA'
+                        : i === 8 ? '产品'
+                        : i === 9 ? '备注'
+                        : '';
             th.appendChild(document.createTextNode(name));
         }
 
         for (var i = 0; i < data.length; ++i)
         {
             var tr = tbl.insertRow();
-            if ( i % 2 === 0 ) tr.style.background = '#eee';
-            for (var j = 0; j < 5; ++j) {
+            // if ( i % 2 === 0 ) tr.style.background = '#eee';
+            tr.style.borderTop = '1px solid #ccc';
+            for (var j = 0; j < 10; ++j) {
                 var td = tr.insertCell();
                 td.style.padding = '10px';
-                if ( j !== 4 ) td.style.borderRight = '1px solid #ccc';
-                var name = j === 0 ? 'name'
-                           : ( j === 1 ? 'status'
-                              : ( j === 2 ? 'done'
-                                : ( j === 3 ? 'online' 
-                                    : ( j === 4 ? 'note' : ''))));
+                if ( j !== 9 ) td.style.borderRight = '1px solid #ccc';
+                if ( j === 9 ) td.style.maxWidth = '300px';
+                var name = j === 0 ? 'proj'
+                        : j === 1 ? 'subproj'
+                        : j === 2 ? 'priority'
+                        : j === 3 ? 'tech_t' 
+                        : j === 4 ? 'qa_t'
+                        : j === 5 ? 'pub'
+                        : j === 6 ? 'leader'
+                        : j === 7 ? 'qa'
+                        : j === 8 ? 'prod'
+                        : j === 9 ? 'note'
+                        : '';
                 td.appendChild(document.createTextNode(data[i][name].toString()));
             }
         }
