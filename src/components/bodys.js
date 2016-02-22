@@ -198,7 +198,7 @@ class Bodys extends Component {
                         : j === 8 ? 'prod'
                         : j === 9 ? 'note'
                         : '';
-                td.appendChild(document.createTextNode(data[i][name].toString()));
+                td.innerHTML = data[i][name].toString().replace(/\\n/g, '<br>');
             }
         }
         document.getElementById('preview').appendChild(tbl);

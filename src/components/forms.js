@@ -23,7 +23,11 @@ class Forms extends Component {
     render() {
 
         var items_inputs = this.props.inputs.map(function( item, i ){
-            return <TextField key={i} hintText={item.values} floatingLabelText={item.text} value={ item.values  } onChange={ this.handleChange.bind(this) } />
+            // if (item.type == 'textarea') {
+            //     return <TextField multiLine={true} key={i} hintText={item.values} floatingLabelText={item.text} value={ item.values  } onChange={ this.handleChange.bind(this) } />
+            // } else {
+                return <TextField key={i} hintText={item.values} floatingLabelText={item.text} value={ item.values  } onChange={ this.handleChange.bind(this) } />
+            // }
         }, this);
 
         return <form className="contents" onSubmit={this.handleSubmit.bind(this)}>

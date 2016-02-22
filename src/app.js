@@ -15,33 +15,43 @@ class App extends Component {
                 rowData : window.localStorage.rowData ? JSON.parse(window.localStorage.rowData) : [],
                 inputData : [
                     {
+                        type: 'text',
                         values: '例：后台项目',
                         text: '项目'
                     },{
+                        type: 'text',
                         values: 'A',
                         text: '子任务'
                     },{
+                        type: 'text',
                         values: 'A',
                         text: '优先'
                     },{
+                        type: 'text',
                         values: '7/20',
                         text: '开发'
                     },{
+                        type: 'text',
                         values: '12/12',
                         text: '测试'
                     },{
+                        type: 'text',
                         values: '12/12',
                         text: '上线'
                     },{
+                        type: 'text',
                         values: '小a',
                         text: '技术人'
                     },{
+                        type: 'text',
                         values: '小b',
                         text: 'QA'
                     },{
+                        type: 'text',
                         values: '小s',
                         text: '产品'
                     },{
+                        type: 'textarea',
                         values: 'delay了',
                         text: '备注'
                     }
