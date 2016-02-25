@@ -152,7 +152,6 @@ class Bodys extends Component {
     tableCreate(el, data) {
         document.getElementById('table_created') && document.getElementById('table_created').remove();
         var tbl  = document.createElement("table");
-        tbl.style.width  = "70%";
         tbl.style.border = '1px solid #ccc';
         tbl.id = "table_created";
 
@@ -186,7 +185,7 @@ class Bodys extends Component {
                 var td = tr.insertCell();
                 td.style.padding = '10px';
                 if ( j !== 9 ) td.style.borderRight = '1px solid #ccc';
-                if ( j === 9 ) td.style.maxWidth = '300px';
+                td.style.maxWidth = '300px';
                 var name = j === 0 ? 'proj'
                         : j === 1 ? 'subproj'
                         : j === 2 ? 'priority'
