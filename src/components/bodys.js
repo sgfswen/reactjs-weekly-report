@@ -186,6 +186,18 @@ class Bodys extends Component {
                 td.style.padding = '10px';
                 if ( j !== 9 ) td.style.borderRight = '1px solid #ccc';
                 td.style.maxWidth = '300px';
+                if (j>2 && j<6) {
+                    td.onclick = function () {
+                        console.log(this.style.background)
+                        if (this.style.background == '') {
+                            this.style.background = 'rgba(186, 218, 85, 0.6)'
+                        } else if (this.style.background == 'rgba(186, 218, 85, 0.6)') {
+                            this.style.background = 'rgba(255, 51, 51, 0.6)'
+                        } else if (this.style.background == 'rgba(255, 51, 51, 0.6)') {
+                            this.style.background = ''
+                        }
+                    }
+                }
                 var name = j === 0 ? 'proj'
                         : j === 1 ? 'subproj'
                         : j === 2 ? 'priority'
