@@ -188,12 +188,13 @@ class Bodys extends Component {
                 td.style.maxWidth = '300px';
                 if (j>2 && j<6) {
                     td.onclick = function () {
-                        console.log(this.style.background)
                         if (this.style.background == '') {
-                            this.style.background = 'rgba(186, 218, 85, 0.6)'
-                        } else if (this.style.background == 'rgba(186, 218, 85, 0.6)') {
+                            this.style.background = 'rgba(35, 218, 53, 0.6)'
+                        } else if (this.style.background == 'rgba(35, 218, 53, 0.6)') {
                             this.style.background = 'rgba(255, 51, 51, 0.6)'
                         } else if (this.style.background == 'rgba(255, 51, 51, 0.6)') {
+                            this.style.background = 'rgba(209, 226, 15, 0.6)'
+                        } else if (this.style.background == 'rgba(209, 226, 15, 0.6)') {
                             this.style.background = ''
                         }
                         el.textContent = '<table>'+document.getElementById('table_created').innerHTML+'</table>';
