@@ -153,6 +153,7 @@ class Bodys extends Component {
         document.getElementById('table_created') && document.getElementById('table_created').remove();
         var tbl  = document.createElement("table");
         tbl.style.border = '1px solid #ccc';
+        tbl.style.borderCollapse = 'collapse';
         tbl.id = "table_created";
 
         var tr_thead = tbl.insertRow();
